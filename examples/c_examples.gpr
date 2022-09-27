@@ -1,0 +1,53 @@
+with "../libmongoc.gpr";
+
+project C_Examples is
+
+   for Source_Dirs use ("src");
+   for Object_Dir use ".obj/" & project'Name;
+   for Exec_Dir use "bin";
+   for Main use project'Main & ("aggregation1.c");
+   for Main use project'Main & ("basic-aggregation.c");
+   for Main use project'Main & ("bulk1.c");
+   for Main use project'Main & ("bulk2.c");
+   for Main use project'Main & ("bulk3.c");
+   for Main use project'Main & ("bulk4.c");
+   for Main use project'Main & ("bulk5.c");
+   for Main use project'Main & ("bulk6.c");
+   for Main use project'Main & ("bulk-collation.c");
+   for Main use project'Main & ("client-side-encryption-auto-decryption.c");
+   for Main use project'Main & ("client-side-encryption-doc-snippets.c");
+   for Main use project'Main & ("client-side-encryption-explicit.c");
+   for Main use project'Main & ("client-side-encryption-schema-map.c");
+   for Main use project'Main & ("client-side-encryption-server-schema.c");
+   for Main use project'Main & ("common-operations.c");
+   for Main use project'Main & ("example-client.c");
+   for Main use project'Main & ("example-collection-watch.c");
+   for Main use project'Main & ("example-command-monitoring.c");
+   for Main use project'Main & ("example-command-with-opts.c");
+   for Main use project'Main & ("example-create-indexes.c");
+   for Main use project'Main & ("example-gridfs-bucket.c");
+   for Main use project'Main & ("example-gridfs.c");
+   for Main use project'Main & ("example-pool.c");
+   for Main use project'Main & ("example-resume.c");
+   for Main use project'Main & ("example-scram.c");
+   for Main use project'Main & ("example-sdam-monitoring.c");
+   for Main use project'Main & ("example-session.c");
+   for Main use project'Main & ("example-start-at-optime.c");
+   for Main use project'Main & ("example-transaction.c");
+   for Main use project'Main & ("example-update.c");
+   for Main use project'Main & ("example-with-transaction-cb.c");
+   for Main use project'Main & ("fam.c");
+   for Main use project'Main & ("find-and-modify.c");
+   for Main use project'Main & ("hello_mongoc.c");
+   for Main use project'Main & ("mongoc-dump.c");
+   for Main use project'Main & ("mongoc-ping.c");
+   for Main use project'Main & ("mongoc-tail.c");
+   for Languages use ("C");
+   for Source_Files use ("aggregation1.c", "basic-aggregation.c", "bulk1.c", "bulk2.c", "bulk3.c", "bulk4.c", "bulk5.c", "bulk6.c", "bulk-collation.c", "client-side-encryption-auto-decryption.c", 
+      "client-side-encryption-doc-snippets.c", "client-side-encryption-explicit.c", "client-side-encryption-helpers.c", "client-side-encryption-helpers.h", "client-side-encryption-schema-map.c", 
+      "client-side-encryption-server-schema.c", "common-operations.c", "constants.c", "example-client.c", "example-collection-watch.c", "example-command-monitoring.c", "example-command-with-opts.c", "example-create-indexes.c", 
+      "example-gridfs-bucket.c", "example-gridfs.c", "example-pool.c", "example-resume.c", "example-scram.c", "example-sdam-monitoring.c", "example-session.c", "example-start-at-optime.c", "example-transaction.c", "example-update.c", 
+      "example-with-transaction-cb.c", "fam.c", "find-and-modify.c", "hello_mongoc.c", "mongoc-dump.c", "mongoc-ping.c", "mongoc-tail.c");
+
+end C_Examples;
+

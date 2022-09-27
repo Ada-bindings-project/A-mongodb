@@ -1,0 +1,8 @@
+project Libbson is 
+   for Languages use ("C");
+   for Source_Dirs use ("/usr/include/libbson-1.0");
+   for Externally_Built use "True";
+   package Linker is 
+      for Linker_Options  use  ("-l" & "bson-1.0");
+   end Linker;
+end Libbson;

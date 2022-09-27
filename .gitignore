@@ -6,3 +6,10 @@
 *.stdout
 *.lexch
 *-loc.xml
+*.clang*
+messages.txt
+*.d
+gpsauto.cgpr
+*.bexch
+*.deps
+b__*

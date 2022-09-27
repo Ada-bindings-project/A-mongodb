@@ -1,0 +1,9 @@
+with "libbson.gpr";
+project Libmongoc is 
+   for Languages use ("C");
+   for Source_Dirs use ("/usr/include/libmongoc-1.0");
+   for Externally_Built use "True";
+   package Linker is 
+      for Linker_Options  use  ("-l" & "mongoc-1.0");
+   end Linker;
+end Libmongoc;

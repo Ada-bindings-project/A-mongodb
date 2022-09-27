@@ -1,3 +1,4 @@
+with "libmongoc.gpr";
 library project Mongodb is
 
    for Languages use ("Ada");
@@ -10,6 +11,10 @@ library project Mongodb is
    package Compiler is
       for Switches ("ada") use ("-gnatX", "-gnatf", "-gnatwa");
    end Compiler;
+
+   package Linker is
+      for Linker_Options use ("-l" & "mongoc-1.0");
+   end Linker;
 
 end Mongodb;
 
