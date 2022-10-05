@@ -1,233 +1,193 @@
-pragma Ada_2012;
-package body mongo.cursor is
+pragma Warnings (Off);
+package body Mongo.Cursor is
 
    ----------
-   -- more --
+   -- More --
    ----------
 
-   function more (cursor : in out cursor_t) return Boolean is
+   function More (Cursor : in out Cursor_T) return Boolean is
    begin
-      pragma Compile_Time_Warning (Standard.True, "more unimplemented");
-      return raise Program_Error with "Unimplemented function more";
-   end more;
+      pragma Compile_Time_Warning (Standard.True, "More unimplemented");
+      return raise Program_Error with "Unimplemented function More";
+   end More;
 
    ----------
-   -- next --
+   -- Next --
    ----------
 
-   function next
-     (cursor : in out cursor_t; bson : System.Address) return Boolean
+   function Next
+     (Cursor : in out Cursor_T; Bson : System.Address) return Boolean
    is
    begin
-      pragma Compile_Time_Warning (Standard.True, "next unimplemented");
-      return raise Program_Error with "Unimplemented function next";
-   end next;
+      pragma Compile_Time_Warning (Standard.True, "Next unimplemented");
+      return raise Program_Error with "Unimplemented function Next";
+   end Next;
 
    -----------
-   -- error --
+   -- Error --
    -----------
 
-   function error
-     (cursor : in out cursor_t; error : bson.Errors.error_t) return Boolean
+   function Error
+     (Cursor : in out Cursor_T; Error : Bson.Errors.Error_T) return Boolean
    is
    begin
-      pragma Compile_Time_Warning (Standard.True, "error unimplemented");
-      return raise Program_Error with "Unimplemented function error";
-   end error;
+      pragma Compile_Time_Warning (Standard.True, "Error unimplemented");
+      return raise Program_Error with "Unimplemented function Error";
+   end Error;
 
    --------------------
-   -- error_document --
+   -- Error_Document --
    --------------------
 
-   function error_document
-     (cursor : in out cursor_t; error : bson.Errors.error_t;
-      doc    :        System.Address) return Boolean
+   function Error_Document
+     (Cursor : in out Cursor_T; Error : Bson.Errors.Error_T;
+      Doc    :        System.Address) return Boolean
    is
    begin
       pragma Compile_Time_Warning
-        (Standard.True, "error_document unimplemented");
-      return raise Program_Error with "Unimplemented function error_document";
-   end error_document;
+        (Standard.True, "Error_Document unimplemented");
+      return raise Program_Error with "Unimplemented function Error_Document";
+   end Error_Document;
 
    --------------
-   -- get_host --
+   -- Get_Host --
    --------------
 
-   procedure get_host
-     (cursor : in out cursor_t; Host : out Mongo.Host_Lists.Host_List_T)
+   procedure Get_Host
+     (Cursor : in out Cursor_T; Host : out Mongo.Host_Lists.Host_List_T)
    is
    begin
-      pragma Compile_Time_Warning (Standard.True, "get_host unimplemented");
-      raise Program_Error with "Unimplemented procedure get_host";
-   end get_host;
+      pragma Compile_Time_Warning (Standard.True, "Get_Host unimplemented");
+      raise Program_Error with "Unimplemented procedure Get_Host";
+   end Get_Host;
 
    --------------
-   -- is_alive --
+   -- Is_Alive --
    --------------
 
-   function is_alive (cursor : cursor_t) return Boolean is
+   function Is_Alive (Cursor : Cursor_T) return Boolean is
    begin
-      pragma Compile_Time_Warning (Standard.True, "is_alive unimplemented");
-      return raise Program_Error with "Unimplemented function is_alive";
-   end is_alive;
+      pragma Compile_Time_Warning (Standard.True, "Is_Alive unimplemented");
+      return raise Program_Error with "Unimplemented function Is_Alive";
+   end Is_Alive;
 
    -------------
-   -- current --
+   -- Current --
    -------------
 
-   function current
-     (cursor : cursor_t)
-      return access constant libbson_1_0_bson_bson_types_h.u_bson_t
-   is
+   function Current (Cursor : Cursor_T) return Bson.Types.Bson_T is
    begin
-      pragma Compile_Time_Warning (Standard.True, "current unimplemented");
-      return raise Program_Error with "Unimplemented function current";
-   end current;
+      pragma Compile_Time_Warning (Standard.True, "Current unimplemented");
+      return raise Program_Error with "Unimplemented function Current";
+   end Current;
 
    --------------------
-   -- set_batch_size --
+   -- Set_Batch_Size --
    --------------------
 
-   procedure set_batch_size
-     (cursor : in out cursor_t; batch_size : Interfaces.Unsigned_32)
+   procedure Set_Batch_Size (Cursor : in out Cursor_T; Batch_Size : Positive)
    is
    begin
       pragma Compile_Time_Warning
-        (Standard.True, "set_batch_size unimplemented");
-      raise Program_Error with "Unimplemented procedure set_batch_size";
-   end set_batch_size;
+        (Standard.True, "Set_Batch_Size unimplemented");
+      raise Program_Error with "Unimplemented procedure Set_Batch_Size";
+   end Set_Batch_Size;
 
    --------------------
-   -- get_batch_size --
+   -- Get_Batch_Size --
    --------------------
 
-   function get_batch_size (cursor : cursor_t) return Interfaces.Unsigned_32 is
+   function Get_Batch_Size (Cursor : Cursor_T) return Positive is
    begin
       pragma Compile_Time_Warning
-        (Standard.True, "get_batch_size unimplemented");
-      return raise Program_Error with "Unimplemented function get_batch_size";
-   end get_batch_size;
+        (Standard.True, "Get_Batch_Size unimplemented");
+      return raise Program_Error with "Unimplemented function Get_Batch_Size";
+   end Get_Batch_Size;
 
    ---------------
-   -- set_limit --
+   -- Set_Limit --
    ---------------
 
-   function set_limit
-     (cursor : in out cursor_t; limit : Interfaces.Integer_64) return Boolean
+   function Set_Limit
+     (Cursor : in out Cursor_T; Limit : Long_Long_Integer) return Boolean
    is
    begin
-      pragma Compile_Time_Warning (Standard.True, "set_limit unimplemented");
-      return raise Program_Error with "Unimplemented function set_limit";
-   end set_limit;
+      pragma Compile_Time_Warning (Standard.True, "Set_Limit unimplemented");
+      return raise Program_Error with "Unimplemented function Set_Limit";
+   end Set_Limit;
 
    ---------------
-   -- get_limit --
+   -- Get_Limit --
    ---------------
 
-   function get_limit (cursor : cursor_t) return Interfaces.Integer_64 is
+   function Get_Limit (Cursor : Cursor_T) return Long_Long_Integer is
    begin
-      pragma Compile_Time_Warning (Standard.True, "get_limit unimplemented");
-      return raise Program_Error with "Unimplemented function get_limit";
-   end get_limit;
+      pragma Compile_Time_Warning (Standard.True, "Get_Limit unimplemented");
+      return raise Program_Error with "Unimplemented function Get_Limit";
+   end Get_Limit;
 
    --------------
-   -- set_hint --
+   -- Set_Hint --
    --------------
 
-   function set_hint
-     (cursor : in out cursor_t; server_id : Interfaces.Unsigned_32)
-      return Boolean
+   function Set_Hint
+     (Cursor : in out Cursor_T; Server_Id : Positive) return Boolean
    is
    begin
-      pragma Compile_Time_Warning (Standard.True, "set_hint unimplemented");
-      return raise Program_Error with "Unimplemented function set_hint";
-   end set_hint;
+      pragma Compile_Time_Warning (Standard.True, "Set_Hint unimplemented");
+      return raise Program_Error with "Unimplemented function Set_Hint";
+   end Set_Hint;
 
    --------------
-   -- get_hint --
+   -- Get_Hint --
    --------------
 
-   function get_hint (cursor : cursor_t) return Interfaces.Unsigned_32 is
+   function Get_Hint (Cursor : Cursor_T) return Positive is
    begin
-      pragma Compile_Time_Warning (Standard.True, "get_hint unimplemented");
-      return raise Program_Error with "Unimplemented function get_hint";
-   end get_hint;
+      pragma Compile_Time_Warning (Standard.True, "Get_Hint unimplemented");
+      return raise Program_Error with "Unimplemented function Get_Hint";
+   end Get_Hint;
 
    ------------
-   -- get_id --
+   -- Get_Id --
    ------------
 
-   function get_id (cursor : cursor_t) return Interfaces.Integer_64 is
+   function Get_Id (Cursor : Cursor_T) return Long_Long_Integer is
    begin
-      pragma Compile_Time_Warning (Standard.True, "get_id unimplemented");
-      return raise Program_Error with "Unimplemented function get_id";
-   end get_id;
+      pragma Compile_Time_Warning (Standard.True, "Get_Id unimplemented");
+      return raise Program_Error with "Unimplemented function Get_Id";
+   end Get_Id;
 
    -------------------------
-   -- set_max_await_times --
+   -- Set_Max_Await_Times --
    -------------------------
 
-   procedure set_max_await_times
-     (cursor : in out cursor_t; max_await_times : Duration)
+   procedure Set_Max_Await_Times
+     (Cursor : in out Cursor_T; Max_Await_Times : Duration)
    is
    begin
       pragma Compile_Time_Warning
-        (Standard.True, "set_max_await_times unimplemented");
-      raise Program_Error with "Unimplemented procedure set_max_await_times";
-   end set_max_await_times;
+        (Standard.True, "Set_Max_Await_Times unimplemented");
+      raise Program_Error with "Unimplemented procedure Set_Max_Await_Times";
+   end Set_Max_Await_Times;
 
    -------------------------
-   -- get_max_await_times --
+   -- Get_Max_Await_Times --
    -------------------------
 
-   function get_max_await_times (cursor : cursor_t) return Duration is
+   function Get_Max_Await_Times (Cursor : Cursor_T) return Duration is
    begin
       pragma Compile_Time_Warning
-        (Standard.True, "get_max_await_times unimplemented");
+        (Standard.True, "Get_Max_Await_Times unimplemented");
       return
-        raise Program_Error with "Unimplemented function get_max_await_times";
-   end get_max_await_times;
-
-   ----------------------------
-   -- new_from_command_reply --
-   ----------------------------
-
-   function new_from_command_reply
-     (client    : mongo.client.client_t;
-      reply     : access libbson_1_0_bson_bson_types_h.u_bson_t;
-      server_id : Interfaces.Unsigned_32) return cursor_t
-   is
-   begin
-      pragma Compile_Time_Warning
-        (Standard.True, "new_from_command_reply unimplemented");
-      return
-        raise Program_Error
-          with "Unimplemented function new_from_command_reply";
-   end new_from_command_reply;
-
-   --------------------------------------
-   -- new_from_command_reply_with_opts --
-   --------------------------------------
-
-   function new_from_command_reply_with_opts
-     (client : mongo.client.client_t;
-      reply  : access libbson_1_0_bson_bson_types_h.u_bson_t;
-      opts   : access constant libbson_1_0_bson_bson_types_h.u_bson_t)
-      return cursor_t
-   is
-   begin
-      pragma Compile_Time_Warning
-        (Standard.True, "new_from_command_reply_with_opts unimplemented");
-      return
-        raise Program_Error
-          with "Unimplemented function new_from_command_reply_with_opts";
-   end new_from_command_reply_with_opts;
+        raise Program_Error with "Unimplemented function Get_Max_Await_Times";
+   end Get_Max_Await_Times;
 
    ------------
    -- Adjust --
    ------------
 
-   procedure Adjust (Object : in out Cursor_T) is
+   overriding procedure Adjust (Cursor : in out Cursor_T) is
    begin
       pragma Compile_Time_Warning (Standard.True, "Adjust unimplemented");
       raise Program_Error with "Unimplemented procedure Adjust";
@@ -237,10 +197,10 @@ package body mongo.cursor is
    -- Finalize --
    --------------
 
-   procedure Finalize (Object : in out Cursor_T) is
+   overriding procedure Finalize (Cursor : in out Cursor_T) is
    begin
       pragma Compile_Time_Warning (Standard.True, "Finalize unimplemented");
       raise Program_Error with "Unimplemented procedure Finalize";
    end Finalize;
 
-end mongo.cursor;
+end Mongo.Cursor;

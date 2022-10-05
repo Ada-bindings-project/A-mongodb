@@ -13,3 +13,4 @@ gpsauto.cgpr
 *.bexch
 *.deps
 b__*
+.#*#

@@ -1,23 +1,23 @@
-pragma Ada_2012;
-with Libmongoc_1_0_Mongoc_Mongoc_Init_H;
+pragma Warnings (Off);
+with libmongoc_1_0_mongoc_mongoc_init_h;
 package body Mongo is
 
    ----------------
    -- Initialize --
    ----------------
 
-   procedure Initialize (Object : in out Initialization_Controler) is
+   overriding procedure Initialize (Object : in out Initialization_Controler) is
    begin
-      Libmongoc_1_0_Mongoc_Mongoc_Init_H.Mongoc_Init;
+      libmongoc_1_0_mongoc_mongoc_init_h.mongoc_init;
    end Initialize;
 
    --------------
    -- Finalize --
    --------------
 
-   procedure Finalize (Object : in out Initialization_Controler) is
+   overriding procedure Finalize (Object : in out Initialization_Controler) is
    begin
-      Libmongoc_1_0_Mongoc_Mongoc_Init_H.mongoc_cleanup;
+      libmongoc_1_0_mongoc_mongoc_init_h.mongoc_cleanup;
    end Finalize;
    Object :  Initialization_Controler;
 end Mongo;

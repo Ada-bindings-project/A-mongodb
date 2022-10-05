@@ -1,4 +1,4 @@
-pragma Ada_2012;
+pragma Warnings (Off);
 package body Mongo.Host_Lists is
 
    -----------

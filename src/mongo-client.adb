@@ -1,23 +1,12 @@
-pragma Ada_2012;
-package body mongo.client is
-
-   ----------------
-   -- new_Client --
-   ----------------
-
-   function new_Client (uri_string : String) return access mongoc_client_t is
-   begin
-      pragma Compile_Time_Warning (Standard.True, "new_Client unimplemented");
-      return raise Program_Error with "Unimplemented function new_Client";
-   end new_Client;
+pragma Warnings (Off);
+package body Mongo.Client is
 
    ----------------
    -- new_Client --
    ----------------
 
    function new_Client
-     (uri : access constant libmongoc_1_0_mongoc_mongoc_uri_h.u_mongoc_uri_t)
-      return access mongoc_client_t
+     (uri_string : String) return access Mongo.Client.Client_T
    is
    begin
       pragma Compile_Time_Warning (Standard.True, "new_Client unimplemented");
@@ -28,10 +17,31 @@ package body mongo.client is
    -- new_Client --
    ----------------
 
+   function new_Client (uri : Mongo.URIs.Uri_T) return Mongo.Client.Client_T is
+   begin
+      pragma Compile_Time_Warning (Standard.True, "new_Client unimplemented");
+      return raise Program_Error with "Unimplemented function new_Client";
+   end new_Client;
+
+   ----------------
+   -- New_Client --
+   ----------------
+
+   procedure New_Client
+     (Client : in out Mongo.Client.Client_T; Uri : Mongo.URIs.Uri_T)
+   is
+   begin
+      pragma Compile_Time_Warning (Standard.True, "New_Client unimplemented");
+      raise Program_Error with "Unimplemented procedure New_Client";
+   end New_Client;
+
+   ----------------
+   -- new_Client --
+   ----------------
+
    function new_Client
-     (uri   : access constant libmongoc_1_0_mongoc_mongoc_uri_h.u_mongoc_uri_t;
-      error : access libbson_1_0_bson_bson_types_h.u_bson_error_t)
-      return access mongoc_client_t
+     (uri : Mongo.URIs.Uri_T; error : in out Bson.Errors.Error_T)
+      return Mongo.Client.Client_T
    is
    begin
       pragma Compile_Time_Warning (Standard.True, "new_Client unimplemented");
@@ -42,10 +52,7 @@ package body mongo.client is
    -- get_uri --
    -------------
 
-   function get_uri
-     (client : access constant mongoc_client_t)
-      return access constant libmongoc_1_0_mongoc_mongoc_uri_h.U_Mongoc_Uri_T
-   is
+   function get_uri (client : Client_T) return Mongo.URIs.Uri_T is
    begin
       pragma Compile_Time_Warning (Standard.True, "get_uri unimplemented");
       return raise Program_Error with "Unimplemented function get_uri";
@@ -56,8 +63,8 @@ package body mongo.client is
    --------------------------
 
    procedure set_stream_initiator
-     (client : access mongoc_client_t; initiator : mongoc_stream_initiator_t;
-      user_data : System.Address)
+     (client    : in out Client_T; initiator : mongoc_stream_initiator_t;
+      user_data :        System.Address)
    is
    begin
       pragma Compile_Time_Warning
@@ -70,15 +77,10 @@ package body mongo.client is
    -------------
 
    function command
-     (client     : access mongoc_client_t; db_name : String;
-      flags      : libmongoc_1_0_mongoc_mongoc_flags_h.mongoc_query_flags_t;
-      skip       : Interfaces.Unsigned_32; limit : Interfaces.Unsigned_32;
-      batch_size : Interfaces.Unsigned_32;
-      query      : access constant libbson_1_0_bson_bson_types_h.u_bson_t;
-      fields     : access constant libbson_1_0_bson_bson_types_h.u_bson_t;
-      read_prefs : access constant libmongoc_1_0_mongoc_mongoc_read_prefs_h
-        .u_mongoc_read_prefs_t)
-      return access libmongoc_1_0_mongoc_mongoc_cursor_h.u_mongoc_cursor_t
+     (client     : in out Client_T; db_name : String; flags : Query_Flags_T;
+      skip       :        Positive; limit : Positive; batch_size : Positive;
+      query      :        Bson.Types.Bson_T; fields : Bson.Types.Bson_T;
+      read_prefs :    Mongo.Read_Prefs.Prefs_T) return Mongo.Cursor.Cursor_T
    is
    begin
       pragma Compile_Time_Warning (Standard.True, "command unimplemented");
@@ -90,7 +92,7 @@ package body mongo.client is
    -----------------
 
    procedure kill_cursor
-     (client : access mongoc_client_t; cursor_id : Interfaces.Integer_64)
+     (client : in out Client_T; cursor_id : Interfaces.Integer_64)
    is
    begin
       pragma Compile_Time_Warning (Standard.True, "kill_cursor unimplemented");
@@ -102,13 +104,9 @@ package body mongo.client is
    --------------------
 
    function command_simple
-     (client     : access mongoc_client_t; db_name : String;
-      command    : access constant libbson_1_0_bson_bson_types_h.u_bson_t;
-      read_prefs : access constant libmongoc_1_0_mongoc_mongoc_read_prefs_h
-        .u_mongoc_read_prefs_t;
-      reply : access libbson_1_0_bson_bson_types_h.u_bson_t;
-      error : access libbson_1_0_bson_bson_types_h.u_bson_error_t)
-      return Boolean
+     (client : in out Client_T; db_name : String; command : Bson.Types.Bson_T;
+      read_prefs : Mongo.Read_Prefs.Prefs_T; reply : in out Bson.Types.Bson_T;
+      error      : in out Bson.Errors.Error_T) return Boolean
    is
    begin
       pragma Compile_Time_Warning
@@ -116,18 +114,29 @@ package body mongo.client is
       return raise Program_Error with "Unimplemented function command_simple";
    end command_simple;
 
+   --------------------
+   -- command_simple --
+   --------------------
+
+   procedure command_simple
+     (client : in out Client_T; db_name : String; command : Bson.Types.Bson_T;
+      read_prefs : Mongo.Read_Prefs.Prefs_T; reply : in out Bson.Types.Bson_T;
+      error      : in out Bson.Errors.Error_T)
+   is
+   begin
+      pragma Compile_Time_Warning
+        (Standard.True, "command_simple unimplemented");
+      raise Program_Error with "Unimplemented procedure command_simple";
+   end command_simple;
+
    ----------------------------
    -- read_command_with_opts --
    ----------------------------
 
    function read_command_with_opts
-     (client     : access mongoc_client_t; db_name : String;
-      command    : access constant libbson_1_0_bson_bson_types_h.u_bson_t;
-      read_prefs : access constant libmongoc_1_0_mongoc_mongoc_read_prefs_h
-        .u_mongoc_read_prefs_t;
-      opts  : access constant libbson_1_0_bson_bson_types_h.u_bson_t;
-      reply : access libbson_1_0_bson_bson_types_h.u_bson_t;
-      error : access libbson_1_0_bson_bson_types_h.u_bson_error_t)
+     (client : in out Client_T; db_name : String; command : Bson.Types.Bson_T;
+      read_prefs :        Mongo.Read_Prefs.Prefs_T; opts : Bson.Types.Bson_T;
+      reply : in out Bson.Types.Bson_T; error : in out Bson.Errors.Error_T)
       return Boolean
    is
    begin
@@ -143,12 +152,9 @@ package body mongo.client is
    -----------------------------
 
    function write_command_with_opts
-     (client  : access mongoc_client_t; db_name : String;
-      command : access constant libbson_1_0_bson_bson_types_h.u_bson_t;
-      opts    : access constant libbson_1_0_bson_bson_types_h.u_bson_t;
-      reply   : access libbson_1_0_bson_bson_types_h.u_bson_t;
-      error   : access libbson_1_0_bson_bson_types_h.u_bson_error_t)
-      return Boolean
+     (client : in out Client_T; db_name : String; command : Bson.Types.Bson_T;
+      opts   :        Bson.Types.Bson_T; reply : in out Bson.Types.Bson_T;
+      error  : in out Bson.Errors.Error_T) return Boolean
    is
    begin
       pragma Compile_Time_Warning
@@ -163,13 +169,9 @@ package body mongo.client is
    ----------------------------------
 
    function read_write_command_with_opts
-     (client     : access mongoc_client_t; db_name : String;
-      command    : access constant libbson_1_0_bson_bson_types_h.u_bson_t;
-      read_prefs : access constant libmongoc_1_0_mongoc_mongoc_read_prefs_h
-        .u_mongoc_read_prefs_t;
-      opts  : access constant libbson_1_0_bson_bson_types_h.u_bson_t;
-      reply : access libbson_1_0_bson_bson_types_h.u_bson_t;
-      error : access libbson_1_0_bson_bson_types_h.u_bson_error_t)
+     (client : in out Client_T; db_name : String; command : Bson.Types.Bson_T;
+      read_prefs :        Mongo.Read_Prefs.Prefs_T; opts : Bson.Types.Bson_T;
+      reply : in out Bson.Types.Bson_T; error : in out Bson.Errors.Error_T)
       return Boolean
    is
    begin
@@ -185,13 +187,9 @@ package body mongo.client is
    -----------------------
 
    function command_with_opts
-     (client     : access mongoc_client_t; db_name : String;
-      command    : access constant libbson_1_0_bson_bson_types_h.u_bson_t;
-      read_prefs : access constant libmongoc_1_0_mongoc_mongoc_read_prefs_h
-        .u_mongoc_read_prefs_t;
-      opts  : access constant libbson_1_0_bson_bson_types_h.u_bson_t;
-      reply : access libbson_1_0_bson_bson_types_h.u_bson_t;
-      error : access libbson_1_0_bson_bson_types_h.u_bson_error_t)
+     (client : in out Client_T; db_name : String; command : Bson.Types.Bson_T;
+      read_prefs :        Mongo.Read_Prefs.Prefs_T; opts : Bson.Types.Bson_T;
+      reply : in out Bson.Types.Bson_T; error : in out Bson.Errors.Error_T)
       return Boolean
    is
    begin
@@ -206,13 +204,9 @@ package body mongo.client is
    -----------------------------------
 
    function command_simple_with_server_id
-     (client     : access mongoc_client_t; db_name : String;
-      command    : access constant libbson_1_0_bson_bson_types_h.u_bson_t;
-      read_prefs : access constant libmongoc_1_0_mongoc_mongoc_read_prefs_h
-        .u_mongoc_read_prefs_t;
-      server_id : Interfaces.Unsigned_32;
-      reply     : access libbson_1_0_bson_bson_types_h.u_bson_t;
-      error     : access libbson_1_0_bson_bson_types_h.u_bson_error_t)
+     (client : in out Client_T; db_name : String; command : Bson.Types.Bson_T;
+      read_prefs :        Mongo.Read_Prefs.Prefs_T; server_id : Positive;
+      reply : in out Bson.Types.Bson_T; error : in out Bson.Errors.Error_T)
       return Boolean
    is
    begin
@@ -227,7 +221,7 @@ package body mongo.client is
    -- destroy --
    -------------
 
-   procedure destroy (client : access mongoc_client_t) is
+   procedure destroy (client : in out Client_T) is
    begin
       pragma Compile_Time_Warning (Standard.True, "destroy unimplemented");
       raise Program_Error with "Unimplemented procedure destroy";
@@ -238,10 +232,8 @@ package body mongo.client is
    -------------------
 
    function start_session
-     (client : access mongoc_client_t;
-      opts   : access constant mongoc_session_opt_t;
-      error  : access libbson_1_0_bson_bson_types_h.u_bson_error_t)
-      return access mongoc_client_session_t
+     (client : in out Client_T; opts : access constant mongoc_session_opt_t;
+      error : in out Bson.Errors.Error_T) return access mongoc_client_session_t
    is
    begin
       pragma Compile_Time_Warning
@@ -250,26 +242,24 @@ package body mongo.client is
    end start_session;
 
    ------------------
-   -- get_database --
+   -- Get_Database --
    ------------------
 
-   function get_database
-     (client : access mongoc_client_t; name : String)
-      return access libmongoc_1_0_mongoc_mongoc_database_h.u_mongoc_database_t
+   function Get_Database
+     (Client : in out Client_T; Name : String) return Database.Database_T
    is
    begin
       pragma Compile_Time_Warning
-        (Standard.True, "get_database unimplemented");
-      return raise Program_Error with "Unimplemented function get_database";
-   end get_database;
+        (Standard.True, "Get_Database unimplemented");
+      return raise Program_Error with "Unimplemented function Get_Database";
+   end Get_Database;
 
    --------------------------
    -- get_default_database --
    --------------------------
 
    function get_default_database
-     (client : access mongoc_client_t)
-      return access libmongoc_1_0_mongoc_mongoc_database_h.u_mongoc_database_t
+     (client : in out Client_T) return Database.Database_T
    is
    begin
       pragma Compile_Time_Warning
@@ -283,8 +273,8 @@ package body mongo.client is
    ----------------
 
    function get_gridfs
-     (client : access mongoc_client_t; db : String; prefix : String;
-      error  : access libbson_1_0_bson_bson_types_h.u_bson_error_t)
+     (client : in out Client_T; db : String; prefix : String;
+      error  : in out Bson.Errors.Error_T)
       return access libmongoc_1_0_mongoc_mongoc_gridfs_h.u_mongoc_gridfs_t
    is
    begin
@@ -297,9 +287,8 @@ package body mongo.client is
    --------------------
 
    function get_collection
-     (client : access mongoc_client_t; db : String; collection : String)
-      return access libmongoc_1_0_mongoc_mongoc_collection_h
-     .u_mongoc_collection_t
+     (client : in out Client_T; db : String; Collection : String)
+      return Mongo.Collection.Collection_T
    is
    begin
       pragma Compile_Time_Warning
@@ -312,8 +301,7 @@ package body mongo.client is
    ------------------------
 
    function get_database_names
-     (client : access mongoc_client_t;
-      error  : access libbson_1_0_bson_bson_types_h.u_bson_error_t)
+     (client : in out Client_T; error : in out Bson.Errors.Error_T)
       return System.Address
    is
    begin
@@ -328,10 +316,8 @@ package body mongo.client is
    ----------------------------------
 
    function get_database_names_with_opts
-     (client : access mongoc_client_t;
-      opts   : access constant libbson_1_0_bson_bson_types_h.u_bson_t;
-      error  : access libbson_1_0_bson_bson_types_h.u_bson_error_t)
-      return System.Address
+     (client : in out Client_T; opts : Bson.Types.Bson_T;
+      error  : in out Bson.Errors.Error_T) return System.Address
    is
    begin
       pragma Compile_Time_Warning
@@ -346,9 +332,8 @@ package body mongo.client is
    --------------------
 
    function find_databases
-     (client : access mongoc_client_t;
-      error  : access libbson_1_0_bson_bson_types_h.u_bson_error_t)
-      return access libmongoc_1_0_mongoc_mongoc_cursor_h.u_mongoc_cursor_t
+     (client : in out Client_T; error : in out Bson.Errors.Error_T)
+      return Mongo.Cursor.Cursor_T
    is
    begin
       pragma Compile_Time_Warning
@@ -361,9 +346,8 @@ package body mongo.client is
    ------------------------------
 
    function find_databases_with_opts
-     (client : access mongoc_client_t;
-      opts   : access constant libbson_1_0_bson_bson_types_h.u_bson_t)
-      return access libmongoc_1_0_mongoc_mongoc_cursor_h.u_mongoc_cursor_t
+     (client : in out Client_T; opts : Bson.Types.Bson_T)
+      return Mongo.Cursor.Cursor_T
    is
    begin
       pragma Compile_Time_Warning
@@ -378,11 +362,10 @@ package body mongo.client is
    -----------------------
 
    function get_server_status
-     (client     : access mongoc_client_t;
-      read_prefs : access libmongoc_1_0_mongoc_mongoc_read_prefs_h
+     (client     : in out Client_T;
+      read_prefs :        access libmongoc_1_0_mongoc_mongoc_read_prefs_h
         .u_mongoc_read_prefs_t;
-      reply : access libbson_1_0_bson_bson_types_h.u_bson_t;
-      error : access libbson_1_0_bson_bson_types_h.u_bson_error_t)
+      reply : in out Bson.Types.Bson_T; error : in out Bson.Errors.Error_T)
       return Boolean
    is
    begin
@@ -396,9 +379,7 @@ package body mongo.client is
    -- get_max_message_size --
    --------------------------
 
-   function get_max_message_size
-     (client : access mongoc_client_t) return Interfaces.Integer_32
-   is
+   function get_max_message_size (client : in out Client_T) return Integer is
    begin
       pragma Compile_Time_Warning
         (Standard.True, "get_max_message_size unimplemented");
@@ -410,9 +391,7 @@ package body mongo.client is
    -- get_max_bson_size --
    -----------------------
 
-   function get_max_bson_size
-     (client : access mongoc_client_t) return Interfaces.Integer_32
-   is
+   function get_max_bson_size (client : in out Client_T) return Integer is
    begin
       pragma Compile_Time_Warning
         (Standard.True, "get_max_bson_size unimplemented");
@@ -425,7 +404,7 @@ package body mongo.client is
    -----------------------
 
    function get_write_concern
-     (client : access constant mongoc_client_t)
+     (client : Client_T)
       return access constant libmongoc_1_0_mongoc_mongoc_write_concern_h
      .u_mongoc_write_concern_t
    is
@@ -441,9 +420,8 @@ package body mongo.client is
    -----------------------
 
    procedure set_write_concern
-     (client        : access mongoc_client_t;
-      write_concern : access constant libmongoc_1_0_mongoc_mongoc_write_concern_h
-        .u_mongoc_write_concern_t)
+     (client        : in out Client_T;
+      write_concern :        Mongo.Write_Concerns.Write_Concern_T)
    is
    begin
       pragma Compile_Time_Warning
@@ -456,7 +434,7 @@ package body mongo.client is
    ----------------------
 
    function get_read_concern
-     (client : access constant mongoc_client_t)
+     (client : Client_T)
       return access constant libmongoc_1_0_mongoc_mongoc_read_concern_h
      .u_mongoc_read_concern_t
    is
@@ -472,7 +450,7 @@ package body mongo.client is
    ----------------------
 
    procedure set_read_concern
-     (client       : access mongoc_client_t;
+     (client       : in out Client_T;
       read_concern : access constant libmongoc_1_0_mongoc_mongoc_read_concern_h
         .u_mongoc_read_concern_t)
    is
@@ -486,10 +464,7 @@ package body mongo.client is
    -- get_read_prefs --
    --------------------
 
-   function get_read_prefs
-     (client : access constant mongoc_client_t)
-      return access constant libmongoc_1_0_mongoc_mongoc_read_prefs_h
-     .u_mongoc_read_prefs_t
+   function get_read_prefs (client : Client_T) return Mongo.Read_Prefs.Prefs_T
    is
    begin
       pragma Compile_Time_Warning
@@ -502,9 +477,7 @@ package body mongo.client is
    --------------------
 
    procedure set_read_prefs
-     (client     : access mongoc_client_t;
-      read_prefs : access constant libmongoc_1_0_mongoc_mongoc_read_prefs_h
-        .u_mongoc_read_prefs_t)
+     (client : in out Client_T; read_prefs : Mongo.Read_Prefs.Prefs_T)
    is
    begin
       pragma Compile_Time_Warning
@@ -517,8 +490,8 @@ package body mongo.client is
    ------------------
 
    procedure set_ssl_opts
-     (client : access mongoc_client_t;
-      opts   : access constant libmongoc_1_0_mongoc_mongoc_ssl_h
+     (client : in out Client_T;
+      opts   :        access constant libmongoc_1_0_mongoc_mongoc_ssl_h
         .u_mongoc_ssl_opt_t)
    is
    begin
@@ -532,8 +505,8 @@ package body mongo.client is
    -----------------------
 
    function set_apm_callbacks
-     (client    : access mongoc_client_t;
-      callbacks : access libmongoc_1_0_mongoc_mongoc_apm_h
+     (client    : in out Client_T;
+      callbacks :        access libmongoc_1_0_mongoc_mongoc_apm_h
         .u_mongoc_apm_callbacks_t;
       context : System.Address) return Boolean
    is
@@ -549,7 +522,7 @@ package body mongo.client is
    ----------------------------
 
    function get_server_description
-     (client : access mongoc_client_t; server_id : Interfaces.Unsigned_32)
+     (client : in out Client_T; server_id : Positive)
       return access libmongoc_1_0_mongoc_mongoc_server_description_h
      .u_mongoc_server_description_t
    is
@@ -566,8 +539,7 @@ package body mongo.client is
    -----------------------------
 
    function get_server_descriptions
-     (client : access constant mongoc_client_t; n : access size_t)
-      return System.Address
+     (client : Client_T; n : access size_t) return System.Address
    is
    begin
       pragma Compile_Time_Warning
@@ -597,10 +569,8 @@ package body mongo.client is
    -------------------
 
    function select_server
-     (client : access mongoc_client_t; for_writes : Boolean;
-      prefs  : access constant libmongoc_1_0_mongoc_mongoc_read_prefs_h
-        .u_mongoc_read_prefs_t;
-      error : access libbson_1_0_bson_bson_types_h.u_bson_error_t)
+     (client : in out Client_T; for_writes : Boolean;
+      prefs  :    Mongo.Read_Prefs.Prefs_T; error : in out Bson.Errors.Error_T)
       return access libmongoc_1_0_mongoc_mongoc_server_description_h
      .u_mongoc_server_description_t
    is
@@ -615,8 +585,7 @@ package body mongo.client is
    -------------------
 
    function set_error_api
-     (client : access mongoc_client_t; version : Interfaces.Integer_32)
-      return Boolean
+     (client : in out Client_T; version : Integer) return Boolean
    is
    begin
       pragma Compile_Time_Warning
@@ -629,11 +598,21 @@ package body mongo.client is
    -----------------
 
    function set_appname
-     (client : access mongoc_client_t; appname : String) return Boolean
+     (client : in out Client_T; appname : String) return Boolean
    is
    begin
       pragma Compile_Time_Warning (Standard.True, "set_appname unimplemented");
       return raise Program_Error with "Unimplemented function set_appname";
+   end set_appname;
+
+   -----------------
+   -- set_appname --
+   -----------------
+
+   procedure set_appname (client : in out Client_T; appname : String) is
+   begin
+      pragma Compile_Time_Warning (Standard.True, "set_appname unimplemented");
+      raise Program_Error with "Unimplemented procedure set_appname";
    end set_appname;
 
    -----------
@@ -641,9 +620,8 @@ package body mongo.client is
    -----------
 
    function watch
-     (client   : access mongoc_client_t;
-      pipeline : access constant libbson_1_0_bson_bson_types_h.u_bson_t;
-      opts     : access constant libbson_1_0_bson_bson_types_h.u_bson_t)
+     (client : in out Client_T; pipeline : Bson.Types.Bson_T;
+      opts   :        Bson.Types.Bson_T)
       return access libmongoc_1_0_mongoc_mongoc_change_stream_h
      .u_mongoc_change_stream_t
    is
@@ -656,7 +634,7 @@ package body mongo.client is
    -- reset --
    -----------
 
-   procedure reset (client : access mongoc_client_t) is
+   procedure reset (client : in out Client_T) is
    begin
       pragma Compile_Time_Warning (Standard.True, "reset unimplemented");
       raise Program_Error with "Unimplemented procedure reset";
@@ -667,11 +645,10 @@ package body mongo.client is
    ----------------------------
 
    function enable_auto_encryption
-     (client : access mongoc_client_t;
-      opts   : access libmongoc_1_0_mongoc_mongoc_client_side_encryption_h
+     (client : in out Client_T;
+      opts   :    access libmongoc_1_0_mongoc_mongoc_client_side_encryption_h
         .u_mongoc_auto_encryption_opts_t;
-      error : access libbson_1_0_bson_bson_types_h.u_bson_error_t)
-      return Boolean
+      error : in out Bson.Errors.Error_T) return Boolean
    is
    begin
       pragma Compile_Time_Warning
@@ -686,11 +663,10 @@ package body mongo.client is
    --------------------
 
    function set_server_api
-     (client : access mongoc_client_t;
-      api    : access constant libmongoc_1_0_mongoc_mongoc_server_api_h
+     (client : in out Client_T;
+      api    :        access constant libmongoc_1_0_mongoc_mongoc_server_api_h
         .u_mongoc_server_api_t;
-      error : access libbson_1_0_bson_bson_types_h.u_bson_error_t)
-      return Boolean
+      error : in out Bson.Errors.Error_T) return Boolean
    is
    begin
       pragma Compile_Time_Warning
@@ -703,9 +679,8 @@ package body mongo.client is
    -------------------------------
 
    function get_handshake_description
-     (client : access mongoc_client_t; server_id : Interfaces.Unsigned_32;
-      opts   : access libbson_1_0_bson_bson_types_h.u_bson_t;
-      error  : access libbson_1_0_bson_bson_types_h.u_bson_error_t)
+     (client : in out Client_T; server_id : Positive;
+      opts   : in out Bson.Types.Bson_T; error : in out Bson.Errors.Error_T)
       return access libmongoc_1_0_mongoc_mongoc_server_description_h
      .U_Mongoc_Server_Description_T
    is
@@ -717,4 +692,36 @@ package body mongo.client is
           with "Unimplemented function get_handshake_description";
    end get_handshake_description;
 
-end mongo.client;
+   ----------------------------
+   -- New_From_Command_Reply --
+   ----------------------------
+
+   function New_From_Command_Reply
+     (client    : Client_T; reply : in out Bson.Types.Bson_T;
+      server_id : Positive) return Mongo.Cursor.Cursor_T
+   is
+   begin
+      pragma Compile_Time_Warning
+        (Standard.True, "New_From_Command_Reply unimplemented");
+      return
+        raise Program_Error
+          with "Unimplemented function New_From_Command_Reply";
+   end New_From_Command_Reply;
+
+   --------------------------------------
+   -- new_from_command_reply_with_opts --
+   --------------------------------------
+
+   function new_from_command_reply_with_opts
+     (client : Mongo.Client.Client_T; reply : in out Bson.Types.Bson_T;
+      opts   : Bson.Types.Bson_T) return Mongo.Cursor.Cursor_T
+   is
+   begin
+      pragma Compile_Time_Warning
+        (Standard.True, "new_from_command_reply_with_opts unimplemented");
+      return
+        raise Program_Error
+          with "Unimplemented function new_from_command_reply_with_opts";
+   end new_from_command_reply_with_opts;
+
+end Mongo.Client;

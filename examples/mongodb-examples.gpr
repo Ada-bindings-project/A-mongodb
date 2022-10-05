@@ -7,12 +7,15 @@ project Mongodb.Examples is
    for Source_Dirs use ("src/**");
    for Object_Dir use ".obj";
    for Exec_Dir use "bin";
+   for Main use ("hello.adb") & project'Main;
 
    package Compiler is
       for Switches use Mongodb.Compiler'Switches;
    end Compiler;
 
-   for Main use ("hello.adb") & project'Main;
+   package Binder is
+      for Switches ("ada") use ("-E");
+   end Binder;
 
 end Mongodb.Examples;
 

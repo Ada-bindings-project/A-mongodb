@@ -1,71 +1,76 @@
-pragma Ada_2012;
-with Ada.Unchecked_Conversion;
-with System;
-with Interfaces.C.Strings;
+pragma Warnings (Off);
 package body Mongo.URIs is
-   use Libmongoc_1_0_Mongoc_Mongoc_Uri_H;
 
    -------------
    -- New_Uri --
    -------------
 
-   function New_Uri (Uri : String) return Uri_T is
+   procedure New_Uri (Uri : in out Uri_T; Name : String) is
    begin
-      return Ret : Uri_T do
-         Ret.New_Uri (Uri);
-      end return;
+      pragma Compile_Time_Warning (Standard.True, "New_Uri unimplemented");
+      raise Program_Error with "Unimplemented procedure New_Uri";
    end New_Uri;
 
    -------------
    -- New_Uri --
    -------------
 
-   function New_Uri
-     (Hostname : String; Port : GNAT.Sockets.Port_Type) return Uri_T
+   procedure New_Uri
+     (Uri : in out Uri_T; Name : Ada.Strings.Unbounded.Unbounded_String)
    is
    begin
       pragma Compile_Time_Warning (Standard.True, "New_Uri unimplemented");
-      return raise Program_Error with "Unimplemented function New_Uri";
+      raise Program_Error with "Unimplemented procedure New_Uri";
    end New_Uri;
 
-   function As_Chars_Ptr is new Ada.Unchecked_Conversion (System.Address, Interfaces.C.Strings.Chars_Ptr);
-   procedure New_Uri (Uri : in out Uri_T; Name : String)
+   -------------
+   -- New_Uri --
+   -------------
+
+   procedure New_Uri
+     (Uri : in out Uri_T; Name : String; Error : in out Bson.Errors.Error_T)
    is
-      L_Name : aliased constant String := Name & Ascii.NUL;
    begin
-      Uri.Impl := Mongoc_Uri_New (As_Chars_Ptr (L_Name'Address));
+      pragma Compile_Time_Warning (Standard.True, "New_Uri unimplemented");
+      raise Program_Error with "Unimplemented procedure New_Uri";
    end New_Uri;
 
-   procedure New_Uri (Uri : in out Uri_T; Name : Ada.Strings.Unbounded.Unbounded_String)
+   -------------
+   -- New_Uri --
+   -------------
+
+   procedure New_Uri
+     (Uri   : in out Uri_T; Name : Ada.Strings.Unbounded.Unbounded_String;
+      Error : in out Bson.Errors.Error_T)
    is
    begin
-      Uri.New_Uri (Ada.Strings.Unbounded.To_String (Name));
+      pragma Compile_Time_Warning (Standard.True, "New_Uri unimplemented");
+      raise Program_Error with "Unimplemented procedure New_Uri";
    end New_Uri;
 
-   procedure New_Uri (Uri : in out Uri_T; Name : String; Error : in out Bson.Errors.Error_T)
+   -------------
+   -- New_Uri --
+   -------------
+
+   procedure New_Uri
+     (Uri : in out Uri_T; Hostname : String; Port : GNAT.Sockets.Port_Type)
    is
    begin
       pragma Compile_Time_Warning (Standard.True, "New_Uri unimplemented");
-      raise Program_Error with "Unimplemented function New_Uri";
-   end New_Uri;
-   procedure New_Uri (Uri : in out Uri_T; Name : Ada.Strings.Unbounded.Unbounded_String; Error : in out Bson.Errors.Error_T)
-   is
-   begin
-      pragma Compile_Time_Warning (Standard.True, "New_Uri unimplemented");
-      raise Program_Error with "Unimplemented function New_Uri";
+      raise Program_Error with "Unimplemented procedure New_Uri";
    end New_Uri;
 
-   procedure New_Uri (Uri : in out Uri_T; Hostname : String; Port : GNAT.Sockets.Port_Type)
+   -------------
+   -- New_Uri --
+   -------------
+
+   procedure New_Uri
+     (Uri  : in out Uri_T; Hostname : Ada.Strings.Unbounded.Unbounded_String;
+      Port :        GNAT.Sockets.Port_Type)
    is
    begin
       pragma Compile_Time_Warning (Standard.True, "New_Uri unimplemented");
-      raise Program_Error with "Unimplemented function New_Uri";
-   end New_Uri;
-   procedure New_Uri (Uri : in out Uri_T; Hostname : Ada.Strings.Unbounded.Unbounded_String; Port : GNAT.Sockets.Port_Type)
-   is
-   begin
-      pragma Compile_Time_Warning (Standard.True, "New_Uri unimplemented");
-      raise Program_Error with "Unimplemented function New_Uri";
+      raise Program_Error with "Unimplemented procedure New_Uri";
    end New_Uri;
 
    ---------------
@@ -87,7 +92,7 @@ package body Mongo.URIs is
       pragma Compile_Time_Warning
         (Standard.True, "Get_Srv_Hostname unimplemented");
       return
-      raise Program_Error with "Unimplemented function Get_Srv_Hostname";
+        raise Program_Error with "Unimplemented function Get_Srv_Hostname";
    end Get_Srv_Hostname;
 
    --------------------------
@@ -99,7 +104,7 @@ package body Mongo.URIs is
       pragma Compile_Time_Warning
         (Standard.True, "Get_Srv_Service_Name unimplemented");
       return
-      raise Program_Error with "Unimplemented function Get_Srv_Service_Name";
+        raise Program_Error with "Unimplemented function Get_Srv_Service_Name";
    end Get_Srv_Service_Name;
 
    ------------------
@@ -342,7 +347,7 @@ package body Mongo.URIs is
       pragma Compile_Time_Warning
         (Standard.True, "Get_Auth_Mechanism unimplemented");
       return
-      raise Program_Error with "Unimplemented function Get_Auth_Mechanism";
+        raise Program_Error with "Unimplemented function Get_Auth_Mechanism";
    end Get_Auth_Mechanism;
 
    ------------------------
@@ -356,7 +361,7 @@ package body Mongo.URIs is
       pragma Compile_Time_Warning
         (Standard.True, "Set_Auth_Mechanism unimplemented");
       return
-      raise Program_Error with "Unimplemented function Set_Auth_Mechanism";
+        raise Program_Error with "Unimplemented function Set_Auth_Mechanism";
    end Set_Auth_Mechanism;
 
    ------------------------------
@@ -370,8 +375,8 @@ package body Mongo.URIs is
       pragma Compile_Time_Warning
         (Standard.True, "Get_Mechanism_Properties unimplemented");
       return
-      raise Program_Error
-        with "Unimplemented function Get_Mechanism_Properties";
+        raise Program_Error
+          with "Unimplemented function Get_Mechanism_Properties";
    end Get_Mechanism_Properties;
 
    ------------------------------
@@ -385,8 +390,8 @@ package body Mongo.URIs is
       pragma Compile_Time_Warning
         (Standard.True, "Set_Mechanism_Properties unimplemented");
       return
-      raise Program_Error
-        with "Unimplemented function Set_Mechanism_Properties";
+        raise Program_Error
+          with "Unimplemented function Set_Mechanism_Properties";
    end Set_Mechanism_Properties;
 
    -------------
@@ -423,21 +428,20 @@ package body Mongo.URIs is
    -- Adjust --
    ------------
 
-   procedure Adjust (Object : in out Uri_T) is
+   overriding procedure Adjust (Object : in out Uri_T) is
    begin
-      if Object.Impl /= null then
-         Object.Impl := Mongoc_Uri_Copy (Object.Impl);
-      end if;
+      pragma Compile_Time_Warning (Standard.True, "Adjust unimplemented");
+      raise Program_Error with "Unimplemented procedure Adjust";
    end Adjust;
 
    --------------
    -- Finalize --
    --------------
 
-   procedure Finalize (Object : in out Uri_T) is
+   overriding procedure Finalize (Object : in out Uri_T) is
    begin
-      if Object.Impl /= null then
-         Mongoc_Uri_Destroy (Object.Impl);
-      end if;
+      pragma Compile_Time_Warning (Standard.True, "Finalize unimplemented");
+      raise Program_Error with "Unimplemented procedure Finalize";
    end Finalize;
+
 end Mongo.URIs;
